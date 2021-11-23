@@ -34,7 +34,6 @@ dependencies {
     implementation 'net.sourceforge.pmd:pmd-cpp:6.33.0'
     implementation 'net.sourceforge.pmd:pmd-core:6.33.0'
     implementation 'net.sourceforge.pmd:pmd-test:6.33.0'
-    implementation group: 'com.itextpdf', name: 'layout', version: '7.1.16'
     testImplementation(platform('org.junit:junit-bom:5.7.2'))
     testImplementation('org.junit.jupiter:junit-jupiter')
 }

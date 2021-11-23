@@ -1,140 +1,104 @@
-eu/qped/umr/chekcers/styleChecker/StyleChecker.java
- eu.qped.umr.chekcers.styleChecker.StyleChecker
-eu/qped/umr/chekcers/Configurator.java
- eu.qped.umr.chekcers.Configurator
-eu/qped/umr/chekcers/MassChecker.java
- eu.qped.umr.chekcers.MassChecker
-eu/qped/umr/chekcers/styleChecker/parsers/XmlParser.java
- eu.qped.umr.chekcers.styleChecker.parsers.XmlParser
-eu/qped/umr/helpers/Compiler.java
- eu.qped.umr.helpers.Compiler
-eu/qped/umr/chekcers/styleChecker/managers/RulesManager.java
- eu.qped.umr.chekcers.styleChecker.managers.RulesManager
-eu/qped/umr/chekcers/styleChecker/configs/ConfiguratorUtility.java
- eu.qped.umr.chekcers.styleChecker.configs.ConfiguratorUtility
-eu/qped/umr/chekcers/styleChecker/StyleFeedbackGenerator.java
- eu.qped.umr.chekcers.styleChecker.StyleFeedbackGenerator
-eu/qped/umr/helpers/JavaObjectFromString.java
- eu.qped.umr.helpers.JavaObjectFromString
-eu/qped/umr/chekcers/styleChecker/ruleFactories/XpathRuleFactory.java
- eu.qped.umr.chekcers.styleChecker.ruleFactories.XpathRuleFactory
-eu/qped/umr/exceptions/NoSuchRuleException.java
- eu.qped.umr.exceptions.NoSuchRuleException
-eu/qped/umr/model/SyntaxFeedback.java
- eu.qped.umr.model.SyntaxFeedback
-eu/qped/umr/chekcers/semanticChecker/helpers/RecursiveCheckHelper.java
- eu.qped.umr.chekcers.semanticChecker.helpers.RecursiveCheckHelper
- eu.qped.umr.chekcers.semanticChecker.helpers.RecursiveCheckHelper$1
-eu/qped/umr/chekcers/syntaxChecker/SyntaxErrorChecker.java
- eu.qped.umr.chekcers.syntaxChecker.SyntaxErrorChecker
-eu/qped/umr/model/SemanticViolation.java
- eu.qped.umr.model.SemanticViolation
-eu/qped/umr/qf/QfAssignment.java
- eu.qped.umr.qf.QfAssignment
-eu/qped/umr/qf/QFMainSettings.java
- eu.qped.umr.qf.QFMainSettings
-eu/qped/umr/chekcers/styleChecker/configs/StyleConfigurator.java
- eu.qped.umr.chekcers.styleChecker.configs.StyleConfigurator
-eu/qped/umr/chekcers/styleChecker/ruleFactories/JavaRuleFactory.java
- eu.qped.umr.chekcers.styleChecker.ruleFactories.JavaRuleFactory
-eu/qped/umr/chekcers/styleChecker/StyleCheckerFactory.java
- eu.qped.umr.chekcers.styleChecker.StyleCheckerFactory
-eu/qped/umr/model/CheckLevel.java
- eu.qped.umr.model.CheckLevel
-eu/qped/umr/chekcers/semanticChecker/helpers/StatementsVisitorHelper.java
- eu.qped.umr.chekcers.semanticChecker.helpers.StatementsVisitorHelper
- eu.qped.umr.chekcers.semanticChecker.helpers.StatementsVisitorHelper$1
- eu.qped.umr.chekcers.semanticChecker.helpers.StatementsVisitorHelper$1$1
- eu.qped.umr.chekcers.semanticChecker.helpers.StatementsVisitorHelper$1$2
- eu.qped.umr.chekcers.semanticChecker.helpers.StatementsVisitorHelper$1$3
- eu.qped.umr.chekcers.semanticChecker.helpers.StatementsVisitorHelper$1$4
- eu.qped.umr.chekcers.semanticChecker.helpers.StatementsVisitorHelper$1$5
- eu.qped.umr.chekcers.semanticChecker.helpers.StatementsVisitorHelper$1$6
- eu.qped.umr.chekcers.semanticChecker.helpers.StatementsVisitorHelper$State
-eu/qped/umr/chekcers/syntaxChecker/SyntaxFeedbackGenerator.java
- eu.qped.umr.chekcers.syntaxChecker.SyntaxFeedbackGenerator
-eu/qped/umr/chekcers/syntaxChecker/SyntaxErrorPredictHelper.java
- eu.qped.umr.chekcers.syntaxChecker.SyntaxErrorPredictHelper
-eu/qped/umr/model/XpathRule.java
- eu.qped.umr.model.XpathRule
-eu/qped/umr/model/Feedback.java
- eu.qped.umr.model.Feedback
 eu/qped/umr/qf/QfUser.java
  eu.qped.umr.qf.QfUser
-eu/qped/umr/model/SyntaxError.java
- eu.qped.umr.model.SyntaxError
-eu/qped/umr/exceptions/NoSuchMethodException.java
- eu.qped.umr.exceptions.NoSuchMethodException
-eu/qped/umr/qf/QfBlock.java
- eu.qped.umr.qf.QfBlock
-eu/qped/umr/chekcers/styleChecker/parsers/Parser.java
- eu.qped.umr.chekcers.styleChecker.parsers.Parser
 eu/qped/umr/model/SemanticFeedback.java
  eu.qped.umr.model.SemanticFeedback
 eu/qped/umr/model/StyleViolation.java
  eu.qped.umr.model.StyleViolation
+eu/qped/umr/compiler/Translator.java
+ eu.qped.umr.compiler.Translator
+eu/qped/umr/configs/ConfLevel.java
+ eu.qped.umr.configs.ConfLevel
 eu/qped/umr/model/StyleFeedback.java
  eu.qped.umr.model.StyleFeedback
-eu/qped/umr/chekcers/styleChecker/externalRules/design/AllowDoWhileStmtRule.java
- eu.qped.umr.chekcers.styleChecker.externalRules.design.AllowDoWhileStmtRule
-eu/qped/umr/chekcers/styleChecker/parsers/StatJsonParser.java
- eu.qped.umr.chekcers.styleChecker.parsers.StatJsonParser
-eu/qped/umr/helpers/Logger.java
- eu.qped.umr.helpers.Logger
-eu/qped/umr/chekcers/autoChecker/DataProvider.java
- eu.qped.umr.chekcers.autoChecker.DataProvider
-eu/qped/umr/chekcers/styleChecker/ruleFactories/RuleFactory.java
- eu.qped.umr.chekcers.styleChecker.ruleFactories.RuleFactory
-eu/qped/umr/chekcers/autoChecker/TableBuilder.java
- eu.qped.umr.chekcers.autoChecker.TableBuilder
+eu/qped/umr/generators/SyntaxFeedbackGenerator.java
+ eu.qped.umr.generators.SyntaxFeedbackGenerator
+eu/qped/umr/checkers/SyntaxErrorChecker.java
+ eu.qped.umr.checkers.SyntaxErrorChecker
+eu/qped/umr/generators/StyleFeedbackGenerator.java
+ eu.qped.umr.generators.StyleFeedbackGenerator
+eu/qped/umr/checkers/SyntaxErrorPredictor.java
+ eu.qped.umr.checkers.SyntaxErrorPredictor
+eu/qped/umr/compiler/JavaObjectFromString.java
+ eu.qped.umr.compiler.JavaObjectFromString
+eu/qped/umr/checkers/CheckerInterface.java
+ eu.qped.umr.checkers.CheckerInterface
+eu/qped/umr/exceptions/NoSuchRuleException.java
+ eu.qped.umr.exceptions.NoSuchRuleException
+eu/qped/umr/configs/ConfiguratorUtility.java
+ eu.qped.umr.configs.ConfiguratorUtility
+eu/qped/umr/compiler/Logger.java
+ eu.qped.umr.compiler.Logger
+eu/qped/umr/model/SyntaxFeedback.java
+ eu.qped.umr.model.SyntaxFeedback
 eu/qped/umr/exceptions/NoSuchPropertyException.java
  eu.qped.umr.exceptions.NoSuchPropertyException
 eu/qped/umr/exceptions/NoSuchRulesetException.java
  eu.qped.umr.exceptions.NoSuchRulesetException
-eu/qped/umr/chekcers/styleChecker/parsers/ViolationsFromReportParser.java
- eu.qped.umr.chekcers.styleChecker.parsers.ViolationsFromReportParser
-eu/qped/umr/qf/QFStyleSettings.java
- eu.qped.umr.qf.QFStyleSettings
-eu/qped/umr/main/MainSettingsConfigurator.java
- eu.qped.umr.main.MainSettingsConfigurator
-eu/qped/umr/chekcers/styleChecker/externalRules/design/NestedForRule.java
- eu.qped.umr.chekcers.styleChecker.externalRules.design.NestedForRule
-eu/qped/umr/chekcers/styleChecker/managers/XmlFileManager.java
- eu.qped.umr.chekcers.styleChecker.managers.XmlFileManager
-eu/qped/umr/chekcers/styleChecker/managers/FeedbackManager.java
- eu.qped.umr.chekcers.styleChecker.managers.FeedbackManager
-eu/qped/umr/model/StyleStatsModel.java
- eu.qped.umr.model.StyleStatsModel
-eu/qped/umr/helpers/Translator.java
- eu.qped.umr.helpers.Translator
-eu/qped/umr/exceptions/LanguageNotSupportedException.java
- eu.qped.umr.exceptions.LanguageNotSupportedException
+eu/qped/umr/exceptions/NoSuchMethodException.java
+ eu.qped.umr.exceptions.NoSuchMethodException
+eu/qped/umr/checkers/StyleViolationAnalyser.java
+ eu.qped.umr.checkers.StyleViolationAnalyser
+eu/qped/umr/model/Feedback.java
+ eu.qped.umr.model.Feedback
+eu/qped/umr/model/SemanticViolation.java
+ eu.qped.umr.model.SemanticViolation
+eu/qped/umr/qf/QfAssignment.java
+ eu.qped.umr.qf.QfAssignment
+eu/qped/umr/qf/QfBlock.java
+ eu.qped.umr.qf.QfBlock
+eu/qped/umr/configs/SyntaxConfigurator.java
+ eu.qped.umr.configs.SyntaxConfigurator
+eu/qped/umr/parsers/XmlParser.java
+ eu.qped.umr.parsers.XmlParser
+eu/qped/umr/parsers/ViolationsFromJsonParser.java
+ eu.qped.umr.parsers.ViolationsFromJsonParser
+eu/qped/umr/model/SyntaxError.java
+ eu.qped.umr.model.SyntaxError
+eu/qped/umr/qf/QFMainSettings.java
+ eu.qped.umr.qf.QFMainSettings
+eu/qped/umr/SimpleSyntaxChecker.java
+ eu.qped.umr.SimpleSyntaxChecker
 eu/qped/umr/Checker.java
  eu.qped.umr.Checker
-eu/qped/umr/main/MassExecutorFactory.java
- eu.qped.umr.main.MassExecutorFactory
+eu/qped/umr/checkers/RecursiveChecker.java
+ eu.qped.umr.checkers.RecursiveChecker
+ eu.qped.umr.checkers.RecursiveChecker$1
+eu/qped/umr/configs/MainSettings.java
+ eu.qped.umr.configs.MainSettings
+eu/qped/umr/checkers/PMDStyleChecker.java
+ eu.qped.umr.checkers.PMDStyleChecker
 eu/qped/umr/qf/QfObject.java
  eu.qped.umr.qf.QfObject
 eu/qped/umr/FailChecker.java
  eu.qped.umr.FailChecker
 eu/qped/umr/SimpleChecker.java
  eu.qped.umr.SimpleChecker
-eu/qped/umr/main/MassExecutor.java
- eu.qped.umr.main.MassExecutor
-eu/qped/umr/chekcers/semanticChecker/config/SemanticConfigurator.java
- eu.qped.umr.chekcers.semanticChecker.config.SemanticConfigurator
+eu/qped/umr/qf/QFStyleConf.java
+ eu.qped.umr.qf.QFStyleConf
+eu/qped/umr/configs/SemanticConfigurator.java
+ eu.qped.umr.configs.SemanticConfigurator
+eu/qped/umr/checkers/StatementsVisitor.java
+ eu.qped.umr.checkers.StatementsVisitor
+ eu.qped.umr.checkers.StatementsVisitor$1
+ eu.qped.umr.checkers.StatementsVisitor$1$1
+ eu.qped.umr.checkers.StatementsVisitor$1$2
+ eu.qped.umr.checkers.StatementsVisitor$1$3
+ eu.qped.umr.checkers.StatementsVisitor$1$4
+ eu.qped.umr.checkers.StatementsVisitor$1$5
+ eu.qped.umr.checkers.StatementsVisitor$1$6
+ eu.qped.umr.checkers.StatementsVisitor$State
+eu/qped/umr/qf/QFSemConfigs.java
+ eu.qped.umr.qf.QFSemConfigs
 eu/qped/umr/CheckerRunner.java
  eu.qped.umr.CheckerRunner
  eu.qped.umr.CheckerRunner$1
-eu/qped/umr/qf/QFSemSettings.java
- eu.qped.umr.qf.QFSemSettings
 eu/qped/umr/StyleChecker.java
  eu.qped.umr.StyleChecker
  eu.qped.umr.StyleChecker$1
-eu/qped/umr/chekcers/semanticChecker/SemanticChecker.java
- eu.qped.umr.chekcers.semanticChecker.SemanticChecker
- eu.qped.umr.chekcers.semanticChecker.SemanticChecker$1
-eu/qped/umr/Mass.java
- eu.qped.umr.Mass
-eu/qped/umr/chekcers/autoChecker/AutoChecker.java
- eu.qped.umr.chekcers.autoChecker.AutoChecker
+eu/qped/umr/configs/StyleConfigurator.java
+ eu.qped.umr.configs.StyleConfigurator
+eu/qped/umr/compiler/Compiler.java
+ eu.qped.umr.compiler.Compiler
+eu/qped/umr/checkers/SemanticChecker.java
+ eu.qped.umr.checkers.SemanticChecker
+ eu.qped.umr.checkers.SemanticChecker$1

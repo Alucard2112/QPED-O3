@@ -68,7 +68,7 @@
 
 
     <!--mayae-->
-    <rule name="CommentRequired" ref="category/java/documentation.xml/CommentRequired">
+    <rule ref="category/java/documentation.xml/CommentRequired">
         <properties>
             <property name="methodWithOverrideCommentRequirement" value="Ignored"
             />
@@ -85,37 +85,12 @@
         </properties>
     </rule>
 
-    <rule name="CommentSize" ref="category/java/documentation.xml/CommentSize">
+    <rule ref="category/java/documentation.xml/CommentSize">
         <properties>
             <property name="maxLines" value="8" />
             <property name="maxLineLength" value="150" />
         </properties>
     </rule>
-
-    <!--comments-->
-<!--    <rule name = "comment1 " ref="category/java/documentation.xml/CommentRequired">-->
-<!--        <properties>-->
-<!--            <property name="methodWithOverrideCommentRequirement" value="Ignored"-->
-<!--            />-->
-<!--            <property name="accessorCommentRequirement" value="Ignored" />-->
-<!--            <property name="classCommentRequirement" value="Ignored" />-->
-<!--            <property name="fieldCommentRequirement" value="Ignored" />-->
-<!--            <property name="publicMethodCommentRequirement" value="Required" />-->
-<!--            <property name="protectedMethodCommentRequirement" value="Required"-->
-<!--            />-->
-<!--            <property name="enumCommentRequirement" value="Ignored" />-->
-<!--            <property name="serialVersionUIDCommentRequired" value="Ignored" />-->
-<!--            <property name="serialPersistentFieldsCommentRequired"-->
-<!--                      value="Ignored" />-->
-<!--        </properties>-->
-<!--    </rule>-->
-
-<!--    <rule  name="comment2" ref="category/java/documentation.xml/CommentSize">-->
-<!--        <properties>-->
-<!--            <property name="maxLines" value="8" />-->
-<!--            <property name="maxLineLength" value="150" />-->
-<!--        </properties>-->
-<!--    </rule>-->
 
 
 </ruleset>

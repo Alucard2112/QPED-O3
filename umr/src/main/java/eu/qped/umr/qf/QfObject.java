@@ -7,30 +7,23 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.HashMap;
 import java.util.Map;
 
-
-
 public class QfObject {
 
-	private String answer;
-	private QFMainSettings qfMainSettings;
-	private QFStyleSettings qfStyleSettings;
-	private String[] feedback;
 
-	private QFSemSettings qfSemSettings;
-	private String[] answers;
+	private QFStyleConf qfStyleConf;
 	private int attemptCount;
+	private String[] feedback;
 	private boolean showSolution;
 	private QfUser user;
 	private QfAssignment assignment;
 	private QfBlock block;
-
-
+	private String[] answers;
+	private String answer;
 	private String checkerClass;
-
-
-
 	private String[] settings;
-
+	private QFSemConfigs qfSemConfigs;
+	private QFMainSettings qfMainSettings;
+	
 	@JsonIgnore
 	private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -89,12 +82,12 @@ public class QfObject {
 	public void setCheckerClass(String checkerClass) {
 		this.checkerClass = checkerClass;
 	}
-	public QFStyleSettings getQfStyleConf() {
-		return qfStyleSettings;
+	public QFStyleConf getQfStyleConf() {
+		return qfStyleConf;
 	}
 
-	public void setQfStyleConf(QFStyleSettings qfStyleSettings) {
-		this.qfStyleSettings = qfStyleSettings;
+	public void setQfStyleConf(QFStyleConf qfStyleConf) {
+		this.qfStyleConf = qfStyleConf;
 	}
 
 
@@ -109,13 +102,11 @@ public class QfObject {
 		return additionalProperties.containsKey(property);
 	}
 
-
-
 	@JsonAnySetter
-	public void setAdditionalProperty(String property, String value){
-		additionalProperties.put(property, value);
-	}
-
+	public void setAdditionalProperty(String property, Object value){
+		additionalProperties.put(property, value); 
+	} 
+	
 	@JsonIgnore
 	public void setCondition(String condition, boolean satisfied) {
 		additionalProperties.put(condition, satisfied);
@@ -175,12 +166,12 @@ public class QfObject {
 
 
 
-	public QFSemSettings getQfSemConfigs() {
-		return qfSemSettings;
+	public QFSemConfigs getQfSemConfigs() {
+		return qfSemConfigs;
 	}
 
-	public void setQfSemConfigs(QFSemSettings qfSemSettings) {
-		this.qfSemSettings = qfSemSettings;
+	public void setQfSemConfigs(QFSemConfigs qfSemConfigs) {
+		this.qfSemConfigs = qfSemConfigs;
 	}
 
 	public QFMainSettings getQfMainSettings() {
@@ -190,11 +181,4 @@ public class QfObject {
 	public void setQfMainSettings(QFMainSettings qfMainSettings) {
 		this.qfMainSettings = qfMainSettings;
 	}
-
-
-
-
-
-
-
 }

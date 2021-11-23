@@ -1,33 +1,26 @@
 package eu.qped.umr.model;
 
 
+//todo refactoring
 
 public class SyntaxFeedback extends Feedback {
 
-    private  String head;
-    private  String example;
+    private final String desc;
+    private final String feedbackMsg;
 
 
 
-    public SyntaxFeedback (String head , String body , String example){
-        super(body);
-        this.head = head;
-        this.example =example;
+    public SyntaxFeedback (String desc , String feedbackMsg){
+        this.desc = desc;
+        this.feedbackMsg = feedbackMsg;
     }
 
-    public String getHead() {
-        return head;
+
+    public String getDesc() {
+        return desc;
     }
 
-    public String getExample() {
-        return example;
-    }
-
-    public void setHead(String head) {
-        this.head = head;
-    }
-
-    public void setExample(String example) {
-        this.example = example;
+    public String getFeedbackMsg() {
+        return feedbackMsg;
     }
 }

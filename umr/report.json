@@ -1,21 +1,230 @@
 {
   "formatVersion": 0,
   "pmdVersion": "6.33.0",
-  "timestamp": "2021-09-13T11:10:46.804+02:00",
+  "timestamp": "2021-06-30T18:06:25.986+02:00",
   "files": [
     {
       "filename": "C:\\Users\\Basel Alaktaa\\Desktop\\BachelorArbeit\\Repo\\o3-prototyping\\umr\\TestClass.java",
       "violations": [
         {
           "beginline": 1,
-          "begincolumn": 55,
-          "endline": 3,
+          "begincolumn": 78,
+          "endline": 1,
+          "endcolumn": 78,
+          "description": "Avoid variables with short names like r",
+          "rule": "ShortVariable",
+          "ruleset": "Code Style",
+          "priority": 3,
+          "externalInfoUrl": "https://pmd.github.io/pmd-6.33.0/pmd_rules_java_codestyle.html#shortvariable"
+        },
+        {
+          "beginline": 1,
+          "begincolumn": 37,
+          "endline": 32,
+          "endcolumn": 6,
+          "description": "The class name \u0027TestClass\u0027 doesn\u0027t match \u0027-1\u0027",
+          "rule": "ClassNamingConventions",
+          "ruleset": "Code Style",
+          "priority": 1,
+          "externalInfoUrl": "https://pmd.github.io/pmd-6.33.0/pmd_rules_java_codestyle.html#classnamingconventions"
+        },
+        {
+          "beginline": 1,
+          "begincolumn": 66,
+          "endline": 32,
           "endcolumn": 5,
-          "description": "The instance method name \u0027rec\u0027 doesn\u0027t match \u0027[AA]\u0027",
+          "description": "The instance method name \u0027rec\u0027 doesn\u0027t match \u0027-1\u0027",
           "rule": "MethodNamingConventions",
           "ruleset": "Code Style",
           "priority": 1,
           "externalInfoUrl": "https://pmd.github.io/pmd-6.33.0/pmd_rules_java_codestyle.html#methodnamingconventions"
+        },
+        {
+          "beginline": 1,
+          "begincolumn": 66,
+          "endline": 32,
+          "endcolumn": 5,
+          "description": "The method \u0027rec(int)\u0027 has a cyclomatic complexity of 11.",
+          "rule": "CyclomaticComplexity",
+          "ruleset": "Design",
+          "priority": 3,
+          "externalInfoUrl": "https://pmd.github.io/pmd-6.33.0/pmd_rules_java_design.html#cyclomaticcomplexity"
+        },
+        {
+          "beginline": 3,
+          "begincolumn": 13,
+          "endline": 3,
+          "endcolumn": 16,
+          "description": "Do not use if statements that are always true or always false",
+          "rule": "UnconditionalIfStatement",
+          "ruleset": "Error Prone",
+          "priority": 3,
+          "externalInfoUrl": "https://pmd.github.io/pmd-6.33.0/pmd_rules_java_errorprone.html#unconditionalifstatement"
+        },
+        {
+          "beginline": 4,
+          "begincolumn": 23,
+          "endline": 6,
+          "endcolumn": 13,
+          "description": "Avoid empty if statements",
+          "rule": "EmptyIfStmt",
+          "ruleset": "Error Prone",
+          "priority": 3,
+          "externalInfoUrl": "https://pmd.github.io/pmd-6.33.0/pmd_rules_java_errorprone.html#emptyifstmt"
+        },
+        {
+          "beginline": 4,
+          "begincolumn": 17,
+          "endline": 4,
+          "endcolumn": 21,
+          "description": "Do not use if statements that are always true or always false",
+          "rule": "UnconditionalIfStatement",
+          "ruleset": "Error Prone",
+          "priority": 3,
+          "externalInfoUrl": "https://pmd.github.io/pmd-6.33.0/pmd_rules_java_errorprone.html#unconditionalifstatement"
+        },
+        {
+          "beginline": 4,
+          "begincolumn": 13,
+          "endline": 6,
+          "endcolumn": 13,
+          "description": "These nested if statements could be combined",
+          "rule": "CollapsibleIfStatements",
+          "ruleset": "Design",
+          "priority": 3,
+          "externalInfoUrl": "https://pmd.github.io/pmd-6.33.0/pmd_rules_java_design.html#collapsibleifstatements"
+        },
+        {
+          "beginline": 9,
+          "begincolumn": 18,
+          "endline": 9,
+          "endcolumn": 18,
+          "description": "The local variable name \u0027i\u0027 doesn\u0027t match \u0027-1\u0027",
+          "rule": "LocalVariableNamingConventions",
+          "ruleset": "Code Style",
+          "priority": 1,
+          "externalInfoUrl": "https://pmd.github.io/pmd-6.33.0/pmd_rules_java_codestyle.html#localvariablenamingconventions"
+        },
+        {
+          "beginline": 9,
+          "begincolumn": 9,
+          "endline": 14,
+          "endcolumn": 13,
+          "description": "This statement should have braces",
+          "rule": "ControlStatementBraces",
+          "ruleset": "Code Style",
+          "priority": 3,
+          "externalInfoUrl": "https://pmd.github.io/pmd-6.33.0/pmd_rules_java_codestyle.html#controlstatementbraces"
+        },
+        {
+          "beginline": 10,
+          "begincolumn": 22,
+          "endline": 10,
+          "endcolumn": 22,
+          "description": "The local variable name \u0027j\u0027 doesn\u0027t match \u0027-1\u0027",
+          "rule": "LocalVariableNamingConventions",
+          "ruleset": "Code Style",
+          "priority": 1,
+          "externalInfoUrl": "https://pmd.github.io/pmd-6.33.0/pmd_rules_java_codestyle.html#localvariablenamingconventions"
+        },
+        {
+          "beginline": 11,
+          "begincolumn": 26,
+          "endline": 11,
+          "endcolumn": 26,
+          "description": "The local variable name \u0027k\u0027 doesn\u0027t match \u0027-1\u0027",
+          "rule": "LocalVariableNamingConventions",
+          "ruleset": "Code Style",
+          "priority": 1,
+          "externalInfoUrl": "https://pmd.github.io/pmd-6.33.0/pmd_rules_java_codestyle.html#localvariablenamingconventions"
+        },
+        {
+          "beginline": 17,
+          "begincolumn": 18,
+          "endline": 17,
+          "endcolumn": 18,
+          "description": "The local variable name \u0027i\u0027 doesn\u0027t match \u0027-1\u0027",
+          "rule": "LocalVariableNamingConventions",
+          "ruleset": "Code Style",
+          "priority": 1,
+          "externalInfoUrl": "https://pmd.github.io/pmd-6.33.0/pmd_rules_java_codestyle.html#localvariablenamingconventions"
+        },
+        {
+          "beginline": 19,
+          "begincolumn": 22,
+          "endline": 19,
+          "endcolumn": 22,
+          "description": "The local variable name \u0027j\u0027 doesn\u0027t match \u0027-1\u0027",
+          "rule": "LocalVariableNamingConventions",
+          "ruleset": "Code Style",
+          "priority": 1,
+          "externalInfoUrl": "https://pmd.github.io/pmd-6.33.0/pmd_rules_java_codestyle.html#localvariablenamingconventions"
+        },
+        {
+          "beginline": 21,
+          "begincolumn": 26,
+          "endline": 21,
+          "endcolumn": 26,
+          "description": "The local variable name \u0027k\u0027 doesn\u0027t match \u0027-1\u0027",
+          "rule": "LocalVariableNamingConventions",
+          "ruleset": "Code Style",
+          "priority": 1,
+          "externalInfoUrl": "https://pmd.github.io/pmd-6.33.0/pmd_rules_java_codestyle.html#localvariablenamingconventions"
+        },
+        {
+          "beginline": 23,
+          "begincolumn": 30,
+          "endline": 23,
+          "endcolumn": 30,
+          "description": "The local variable name \u0027l\u0027 doesn\u0027t match \u0027-1\u0027",
+          "rule": "LocalVariableNamingConventions",
+          "ruleset": "Code Style",
+          "priority": 1,
+          "externalInfoUrl": "https://pmd.github.io/pmd-6.33.0/pmd_rules_java_codestyle.html#localvariablenamingconventions"
+        },
+        {
+          "beginline": 25,
+          "begincolumn": 25,
+          "endline": 25,
+          "endcolumn": 33,
+          "description": "Avoid using a branching statement as the last in a loop.",
+          "rule": "AvoidBranchingStatementAsLastInLoop",
+          "ruleset": "Error Prone",
+          "priority": 2,
+          "externalInfoUrl": "https://pmd.github.io/pmd-6.33.0/pmd_rules_java_errorprone.html#avoidbranchingstatementaslastinloop"
+        },
+        {
+          "beginline": 30,
+          "begincolumn": 18,
+          "endline": 30,
+          "endcolumn": 18,
+          "description": "Avoid using Literals in Conditional Statements",
+          "rule": "AvoidLiteralsInIfCondition",
+          "ruleset": "Error Prone",
+          "priority": 3,
+          "externalInfoUrl": "https://pmd.github.io/pmd-6.33.0/pmd_rules_java_errorprone.html#avoidliteralsinifcondition"
+        },
+        {
+          "beginline": 30,
+          "begincolumn": 21,
+          "endline": 30,
+          "endcolumn": 29,
+          "description": "This statement should have braces",
+          "rule": "ControlStatementBraces",
+          "ruleset": "Code Style",
+          "priority": 3,
+          "externalInfoUrl": "https://pmd.github.io/pmd-6.33.0/pmd_rules_java_codestyle.html#controlstatementbraces"
+        },
+        {
+          "beginline": 31,
+          "begincolumn": 14,
+          "endline": 31,
+          "endcolumn": 30,
+          "description": "This statement should have braces",
+          "rule": "ControlStatementBraces",
+          "ruleset": "Code Style",
+          "priority": 3,
+          "externalInfoUrl": "https://pmd.github.io/pmd-6.33.0/pmd_rules_java_codestyle.html#controlstatementbraces"
         }
       ]
     }

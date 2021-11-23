@@ -12,7 +12,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-public class StyleChecker implements Checker {
+public class StyleChecker implements Checker{
     @Override
     public void check(QfObject qfObject) throws Exception {
         try {
