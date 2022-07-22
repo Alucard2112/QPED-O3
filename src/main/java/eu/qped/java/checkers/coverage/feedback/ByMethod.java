@@ -19,9 +19,9 @@ import java.util.stream.Collectors;
  */
 public class ByMethod implements Comparable<ByMethod> {
     final LinkedList<StmtFB> statementsFB = new LinkedList<>();
-    AstMethod content;
-    Coverage coverage;
-    String contentString;
+    public AstMethod content;
+    public Coverage coverage;
+    String contentString = " ";
 
     ByMethod(Node node) {
         insert(node);
@@ -98,31 +98,29 @@ public class ByMethod implements Comparable<ByMethod> {
         statementsFB.addAll(flatt);
 
         StringBuilder builder = new StringBuilder();
-        builder.append("<pre>");
+        builder.append("");
 
         int i = content.start();
-        for (String line : Arrays
-                .stream(content.content().split("\n"))
-                .collect(Collectors.toList())) {
+        for (String line : content.content()) {
             String head = "";
 
             switch (aClass.byIndex(i ++)) {
                 case FULL:
-                    head = "<fb style='background-color:green'>";
+                    head = "\n[O] ";
                     break;
                 case NOT:
-                    head = "<fb style='background-color:red'>";
+                    head = "\n[X] ";
                     break;
                 case PARTLY:
-                    head = "<fb style='background-color:orange'>";
+                    head = "\n[P] ";
                     break;
                 default:
-                    head = "<fb style='background-color:lightGrey'>";
+                    head = "\n[_] ";
                     break;
             }
-            builder.append(head).append(line).append("</fb><br>");
+            builder.append(head).append(line).append("");
         }
-        contentString =  builder.append("</pre>").toString();
+        contentString =  builder.append("\n\n").toString();
     }
 
     public CoverageCount branch() {

@@ -92,7 +92,7 @@ class Jacoco extends CoverageFramework {
 
         runtime.startup(runtimeData);
 
-        MemoryLoader memoryLoader = new MemoryLoader();
+        MemoryLoader memoryLoader = new MemoryLoader(this.getClass().getClassLoader());
         for (CoverageFacade testClass : testClasses) {
             memoryLoader.upload(testClass.className(), testClass.byteCode());
         }

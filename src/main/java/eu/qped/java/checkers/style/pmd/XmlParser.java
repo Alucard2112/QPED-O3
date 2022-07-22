@@ -1,25 +1,25 @@
 package eu.qped.java.checkers.style.pmd;
 
-import java.io.IOException;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-
 import org.apache.logging.log4j.LogManager;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import java.io.IOException;
+
 public class XmlParser {
 
     private final String path;
 
-    public XmlParser(String path){
+    public XmlParser(String path) {
         this.path = path;
     }
 
-    public NodeList parse () {
+    public NodeList parse() {
 
         // Make an  instance of the DocumentBuilderFactory
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
@@ -31,13 +31,12 @@ public class XmlParser {
             // XML file
             Document inputDom;
 
-            if (path != null){
-            	inputDom  = db.parse(this.getClass().getClassLoader().getResourceAsStream(path));
-            	Element doc = inputDom.getDocumentElement();
-            	nodeList = doc.getElementsByTagName("rule");
-            }
-            else {
-            	LogManager.getLogger(getClass()).error("No such ruleset: "  + path);
+            if (path != null) {
+                inputDom = db.parse(this.getClass().getClassLoader().getResourceAsStream(path));
+                Element doc = inputDom.getDocumentElement();
+                nodeList = doc.getElementsByTagName("rule");
+            } else {
+                LogManager.getLogger(getClass()).error("No such ruleset: " + path);
             }
 
         } catch (ParserConfigurationException | SAXException | IOException e) {

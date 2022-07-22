@@ -23,13 +23,13 @@ public class CompilerTest {
 
     @Test
     public void compileStringTest(){
-        boolean falseResult = compiler.compile("private void print() {\n" +
+        boolean falseResult = compiler.compileFromString("private void print() {\n" +
                 "        System.out.println()\n" +
                 "    }");
 
         Assertions.assertFalse(falseResult);
 
-        boolean trueResult = compiler.compile("private void print() {\n" +
+        boolean trueResult = compiler.compileFromString("private void print() {\n" +
                 "        System.out.println();\n" +
                 "    }");
 
@@ -40,7 +40,6 @@ public class CompilerTest {
     @Test
     public void compileProjectFalseTest() throws IOException {
 
-
         Path tempDir = Files.createTempDirectory("exam-results");
         File file = File.createTempFile("test" ,".java", tempDir.toFile());
 
@@ -48,8 +47,7 @@ public class CompilerTest {
         FileOutputStream fos = new FileOutputStream(file);
         fos.write(falseCode.getBytes());
 
-        compiler.setTargetProjectOrClassPath(tempDir.toString());
-        boolean result = compiler.compile(null);
+        boolean result = compiler.compileFromProject(tempDir.toString());
         Assertions.assertFalse(result);
         Assertions.assertEquals(1, compiler.getCollectedDiagnostics().size());
         file.deleteOnExit();
@@ -59,13 +57,18 @@ public class CompilerTest {
     public void compileProjectTrueTest() throws IOException {
         Path tempDir = Files.createTempDirectory("exam-results");
         File file = File.createTempFile("test" ,".java", tempDir.toFile());
+        File file1 = File.createTempFile("test1" ,".java", tempDir.toFile());
 
         String correctCode = "class test {private void print() { \n System.out.println(); \n  }}";
-        FileOutputStream fos = new FileOutputStream(file);
-        fos.write(correctCode.getBytes());
+        String correctCode1 = "class test1 {public void print() { \n System.out.println(); \n  }}";
 
-        compiler.setTargetProjectOrClassPath(tempDir.toString());
-        boolean result = compiler.compile(null);
+        FileOutputStream fos = new FileOutputStream(file);
+        FileOutputStream fos1 = new FileOutputStream(file1);
+
+        fos.write(correctCode.getBytes());
+        fos1.write(correctCode1.getBytes());
+
+        boolean result = compiler.compileFromProject(tempDir.toString());
         Assertions.assertTrue(result);
         Assertions.assertEquals(0, compiler.getCollectedDiagnostics().size());
         file.deleteOnExit();
@@ -74,8 +77,7 @@ public class CompilerTest {
     @Test
     public void compileProjectWithoutFilesTest() throws IOException {
         Path tempDir = Files.createTempDirectory("exam-results");
-        compiler.setTargetProjectOrClassPath(tempDir.toString());
-        boolean result = compiler.compile(null);
+        boolean result = compiler.compileFromProject(tempDir.toString());
         Assertions.assertFalse(result);
     }
 

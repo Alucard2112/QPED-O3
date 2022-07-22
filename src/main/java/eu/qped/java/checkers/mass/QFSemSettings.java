@@ -6,20 +6,14 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class QFSemSettings extends QfObjectBase {
-    //todo rec muss und rec allowed
 
-    private String methodName;
-    private String recursionAllowed; //todo name ändern
-    private String whileLoop;
-    private String forLoop;
-    private String forEachLoop;
-    private String ifElseStmt;
-    private String doWhileLoop;
-    private String returnType;
+    private List<SemanticSettingItem> semantics;
 
 }

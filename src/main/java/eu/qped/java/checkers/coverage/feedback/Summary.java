@@ -20,6 +20,7 @@ public class Summary implements AstCollection, CoverageCollection, TestCollectio
 
     @Override
     public void add(AstResult result) {
+
         if (result instanceof AstMethod) {
             insert(builder.build((AstMethod) result));
         } else {

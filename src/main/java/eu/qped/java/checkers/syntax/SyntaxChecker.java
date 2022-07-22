@@ -10,7 +10,9 @@ import lombok.NoArgsConstructor;
 import javax.tools.Diagnostic;
 import javax.tools.JavaFileObject;
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 
 /**
  * checker for the syntax problems in java code.
@@ -24,7 +26,7 @@ import java.util.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class SyntaxChecker {
+public class SyntaxChecker implements Runnable {
 
     private String stringAnswer;
 
@@ -35,35 +37,12 @@ public class SyntaxChecker {
     @Deprecated(forRemoval = true)
     private CheckLevel level;
 
-    public SyntaxCheckReport check() {
-        SyntaxCheckReport.SyntaxCheckReportBuilder resultBuilder = SyntaxCheckReport.builder();
-
-        if (compiler == null) {
-            compiler = Compiler.builder().build();
-        }
-
-        boolean compileResult;
-
-        if (stringAnswer != null && !stringAnswer.equals("")) {
-            compileResult = compiler.compile(stringAnswer);
-            resultBuilder.compiledSourceType(CompiledSourceType.STRING);
-            resultBuilder.codeAsString(compiler.getFullSourceCode());
-        } else {
-            compiler.setTargetProjectOrClassPath(targetProject);
-            compileResult = compiler.compile(null);
-            resultBuilder.compiledSourceType(CompiledSourceType.PROJECT);
-        }
-        resultBuilder.isCompilable(compileResult);
-
-        List<Diagnostic<? extends JavaFileObject>> diagnostics = compiler.getCollectedDiagnostics();
-        List<SyntaxError> collectedErrors = new ArrayList<>();
-        if (diagnostics != null) {
-            collectedErrors = analyseDiagnostics(diagnostics);
-        }
-        resultBuilder.syntaxErrors(collectedErrors);
-        resultBuilder.path(compiler.getTargetProjectOrClassPath());
-        return resultBuilder.build();
+    @Override
+    public void run() {
+        System.out.println("running: " + this.getClass().getSimpleName());
     }
+
+
 
     private String getErrorTrigger(Diagnostic<? extends JavaFileObject> diagnostic) {
 
@@ -71,8 +50,8 @@ public class SyntaxChecker {
 
         try {
             errorCode = diagnostic.getSource().getCharContent(false).toString();
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException | NullPointerException e) { // TODO QUICK FIX NullPointerException <Diagnostic=warning: No processor claimed any of these annotations: /org.junit.jupiter.api.Test>  has no source
+            // e.printStackTrace();
             return errorCode;
         }
         String[] codeSplitByLine = errorCode.split("\n");
@@ -90,6 +69,9 @@ public class SyntaxChecker {
         List<SyntaxError> syntaxErrors = new ArrayList<>();
         for (Diagnostic<? extends JavaFileObject> diagnostic : diagnostics) {
             String errorTrigger = getErrorTrigger(diagnostic);
+            if (errorTrigger.isBlank()) // // TODO QUICK FIX NullPointerException <Diagnostic=warning: No processor claimed any of these annotations: /org.junit.jupiter.api.Test>  has no source
+                continue;
+
             syntaxErrors.add(
                     SyntaxError.builder()
                             .errorCode(diagnostic.getCode())
@@ -106,5 +88,47 @@ public class SyntaxChecker {
         }
         return syntaxErrors;
     }
+
+    public SyntaxCheckReport check() {
+        SyntaxCheckReport.SyntaxCheckReportBuilder resultBuilder = SyntaxCheckReport.builder();
+
+        if (compiler == null) {
+            compiler = Compiler.builder().build();
+        }
+
+        boolean compileResult;
+
+        compiler.setCompiledStringResourcePath("src/main/resources/exam-results/src");
+
+        if (stringAnswer != null && !stringAnswer.equals("")) {
+            compileResult = compiler.compileFromString(stringAnswer);
+            resultBuilder.compiledSourceType(CompiledSourceType.STRING);
+            resultBuilder.codeAsString(compiler.getFullSourceCode());
+        } else {
+            compileResult = compiler.compileFromProject(targetProject);
+            resultBuilder.compiledSourceType(CompiledSourceType.PROJECT);
+        }
+        resultBuilder.isCompilable(compileResult);
+
+        List<Diagnostic<? extends JavaFileObject>> diagnostics = compiler.getCollectedDiagnostics();
+        List<SyntaxError> collectedErrors = new ArrayList<>();
+        if (diagnostics != null) {
+            collectedErrors = analyseDiagnostics(diagnostics);
+        }
+        resultBuilder.syntaxErrors(collectedErrors);
+        resultBuilder.path(compiler.getTargetProjectOrClassPath());
+        return resultBuilder.build();
+    }
+
+    public static void main(String[] args) {
+        SyntaxChecker checker = SyntaxChecker.builder().targetProject("tmp/exam-results62b874f9fb9d582f0b08d371").build();
+        var report = checker.check();
+
+        System.out.println("path: " + report.getPath());
+
+        System.out.println(report.getSyntaxErrors().size());
+
+    }
+
 
 }

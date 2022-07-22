@@ -1,6 +1,6 @@
 package eu.qped.java.checkers.coverage.framework.test;
 
-import org.junit.platform.engine.UniqueId;
+import org.junit.platform.engine.*;
 import org.junit.platform.launcher.*;
 import org.junit.platform.launcher.core.*;
 import org.junit.platform.launcher.listeners.*;
@@ -42,12 +42,23 @@ class JUnit5 implements TestFramework {
                 .selectors(testClasses.stream().map(t -> selectClass(t)).collect(Collectors.toList()))
                 .build();
         SummaryGeneratingListener summary = new SummaryGeneratingListener();
-        try (LauncherSession session = LauncherFactory.openSession()) {
-            Launcher launcher = session.getLauncher();
-            launcher.registerTestExecutionListeners(summary);
-            TestPlan plan = launcher.discover(request);
-            launcher.execute(plan);
-        }
+
+        Optional<TestEngine> testEngine = ServiceLoader.load(TestEngine.class).findFirst();
+        if (testEngine.isEmpty())
+            return  summary.getSummary();
+
+        LauncherConfig launcherConfig = LauncherConfig
+                .builder()
+                .enableTestEngineAutoRegistration(false)
+                .enableTestExecutionListenerAutoRegistration(false)
+                .addTestExecutionListeners(summary)
+                .addTestEngines(testEngine.get())
+                .build();
+
+        Launcher launcher = LauncherFactory.create(launcherConfig);
+        TestPlan plan = launcher.discover(request);
+        launcher.execute(plan);
+
         return summary.getSummary();
     }
 

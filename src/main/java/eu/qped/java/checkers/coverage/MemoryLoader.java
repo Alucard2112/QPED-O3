@@ -7,6 +7,14 @@ import java.util.*;
  * @author Herfurth
  */
 public class MemoryLoader extends ClassLoader {
+    public MemoryLoader() {
+
+    }
+
+    public MemoryLoader(ClassLoader classLoader) {
+        super(classLoader);
+    }
+
     private final Map<String, byte[]> memory = new HashMap<>();
 
     public void upload(String classname, byte[] classCode) {

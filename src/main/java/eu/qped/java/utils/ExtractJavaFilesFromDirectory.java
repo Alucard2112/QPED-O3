@@ -19,7 +19,7 @@ public class ExtractJavaFilesFromDirectory {
 
     private String dirPath;
 
-    public List<File> filesWithJavaExtension() {
+    public List<File> filesWithExtension(String extension) {
         List<File> allFiles = new ArrayList<>();
         List<File> filesWithJavaExtension = new ArrayList<>();
         File fileOrDirectory = new File(Objects.requireNonNullElse(dirPath, DEFAULT_DIR));
@@ -32,7 +32,7 @@ public class ExtractJavaFilesFromDirectory {
             }
         }
         for (File file : allFiles) {
-            if (FilenameUtils.getExtension(String.valueOf(file)).equals("java")) {
+            if (FilenameUtils.getExtension(String.valueOf(file)).equals(extension)) {
                 filesWithJavaExtension.add(file);
             }
         }

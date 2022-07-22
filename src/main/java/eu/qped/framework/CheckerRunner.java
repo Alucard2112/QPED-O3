@@ -1,12 +1,17 @@
 package eu.qped.framework;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.PrintWriter;
-import java.io.StringWriter;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.core.util.MinimalPrettyPrinter;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
+import eu.qped.framework.qf.QfObject;
+import net.lingala.zip4j.ZipFile;
+import net.lingala.zip4j.exception.ZipException;
+import org.apache.commons.io.FileUtils;
+
+import java.io.*;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
@@ -15,19 +20,6 @@ import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
-import org.apache.commons.io.FileUtils;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.core.util.MinimalPrettyPrinter;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
-
-import eu.qped.framework.qf.QfObject;
-import net.lingala.zip4j.ZipFile;
-import net.lingala.zip4j.exception.ZipException;
 
 public class CheckerRunner {
 
@@ -69,11 +61,15 @@ public class CheckerRunner {
 
 		ObjectMapper mapper = new ObjectMapper();
 
+		// sem, semObj
+		// syntax, syntax
+		// style, style
+		// checkerClass: name
 		Map<String, Object> qfObjectMap = mapper.readValue(qfObjectJsonString,
 				new TypeReference<Map<String, Object>>() {
 				});
 
-//		qfObject = mapper.readValue(qfObjectJsonString, new TypeReference<QfObject>(){});
+		//qfObject = mapper.readValue(qfObjectJsonString, new TypeReference<QfObject>(){});
 
 		String checkerClassName = (String) qfObjectMap.get("checkerClass");
 		if (checkerClassName == null) {
@@ -84,46 +80,46 @@ public class CheckerRunner {
 			@SuppressWarnings("unchecked")
 			Class<Checker> cls = (Class<Checker>) Class.forName(checkerClassName);
 			this.checker = cls.getDeclaredConstructor().newInstance();
-			
+
 			if (qfObjectMap.containsKey(QF_OBJECT_FILE_PROPERTY)) {
 				fileInfo = mapper.readValue(
 						mapper.writeValueAsString(qfObjectMap.get(QF_OBJECT_FILE_PROPERTY)),
 						new TypeReference<FileInfo>() {
 						});
+
 				submittedFile = File.createTempFile(fileInfo.getId(), fileInfo.getExtension());
 				tempFiles.add(submittedFile);
-				
+
 				try (InputStream input = new URL(fileInfo.getUrl()).openStream()) {
 					try (OutputStream output = new FileOutputStream(submittedFile)) {
 						final int BUFFER_SIZE = 1024;
 						byte[] buffer = new byte[BUFFER_SIZE];
-						while (input.available() > BUFFER_SIZE) {
-							input.read(buffer);
-							output.write(buffer);
+						int bytesRead;
+						while ((bytesRead = input.read(buffer, 0, BUFFER_SIZE)) != -1) {
+							output.write(buffer, 0, bytesRead);
 						}
-						int bytes = input.available();
-						input.read(buffer, 0, bytes);
-						output.write(buffer, 0, bytes);
-					}					
+					}
 				}
-				
-				if (fileInfo.getMimetype().equals("application/zip")) {
+				if (fileInfo.getMimetype().contains("application/x-zip-compressed") || fileInfo.getMimetype().contains("application/zip") ) {
 					try {
 						File unzipTarget = Files.createTempDirectory("exam-results").toFile();
 						tempFiles.add(unzipTarget);
 
 						ZipFile zipFile = new ZipFile(submittedFile);
 						zipFile.extractAll(unzipTarget.toString());
-						
+
 						fileInfo.setUnzipped(unzipTarget);
 					} catch (ZipException e) {
 						throw new IllegalArgumentException(e);
 					}
 				}
 				fileInfo.setSubmittedFile(submittedFile);
+
+
 			} else {
 				submittedFile = null;
 			}
+
 
 			qfObject = mapper.readValue(mapper.writeValueAsString(qfObjectMap), new TypeReference<QfObject>() {
 			});
@@ -144,9 +140,6 @@ public class CheckerRunner {
 					}
 				}
 			}
-
-
-
 		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException
 				| NoSuchMethodException | SecurityException | ClassNotFoundException e) {
 			throw new IllegalArgumentException("Illegal checker class specified", e);

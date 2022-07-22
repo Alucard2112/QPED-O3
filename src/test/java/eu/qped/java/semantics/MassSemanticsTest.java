@@ -1,22 +1,20 @@
 package eu.qped.java.semantics;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import eu.qped.framework.CheckLevel;
+import eu.qped.java.checkers.mass.MainSettings;
+import eu.qped.java.checkers.mass.MassExecutor;
+import eu.qped.java.checkers.mass.QFMainSettings;
+import eu.qped.java.checkers.mass.QFSemSettings;
+import eu.qped.java.checkers.semantics.SemanticChecker;
+import eu.qped.java.checkers.semantics.SemanticFeedback;
+import eu.qped.java.checkers.syntax.SyntaxChecker;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import eu.qped.java.checkers.mass.QFMainSettings;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
-import eu.qped.framework.CheckLevel;
-import eu.qped.java.checkers.mass.MainSettings;
-import eu.qped.java.checkers.mass.MassExecutor;
-import eu.qped.java.checkers.mass.QFSemSettings;
-import eu.qped.java.checkers.semantics.SemanticChecker;
-import eu.qped.java.checkers.semantics.SemanticConfigurator;
-import eu.qped.java.checkers.semantics.SemanticFeedback;
-import eu.qped.java.checkers.syntax.SyntaxChecker;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class MassSemanticsTest {
 
@@ -45,17 +43,17 @@ class MassSemanticsTest {
         semanticConf.put("returnType", "int");
 
         QFSemSettings qfSemSettings = new QFSemSettings();
-        qfSemSettings.setMethodName("rec");
-        qfSemSettings.setRecursionAllowed("true");
-        qfSemSettings.setWhileLoop("-1");
-        qfSemSettings.setForLoop("2");
-        qfSemSettings.setForEachLoop("-1");
-        qfSemSettings.setIfElseStmt("-1");
-        qfSemSettings.setDoWhileLoop("-1");
-        qfSemSettings.setReturnType("void");
+//        qfSemSettings.setMethodName("rec");
+//        qfSemSettings.setRecursionAllowed("true");
+//        qfSemSettings.setWhileLoop("-1");
+//        qfSemSettings.setForLoop("2");
+//        qfSemSettings.setForEachLoop("-1");
+//        qfSemSettings.setIfElseStmt("-1");
+//        qfSemSettings.setDoWhileLoop("-1");
+//        qfSemSettings.setReturnType("void");
 
-        SemanticConfigurator semanticConfigurator = SemanticConfigurator.createSemanticConfigurator(qfSemSettings);
-        semanticChecker = SemanticChecker.createSemanticMassChecker(semanticConfigurator);
+
+        semanticChecker = SemanticChecker.builder().qfSemSettings(qfSemSettings).build();
 
     }
 
@@ -70,7 +68,7 @@ class MassSemanticsTest {
 
 
         MassExecutor massE = new MassExecutor(null, semanticChecker, syntaxChecker,
-                mainSettingsConfiguratorConf);
+                null, null, null, mainSettingsConfiguratorConf);
 
         massE.execute();
 

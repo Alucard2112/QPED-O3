@@ -1,121 +1,59 @@
 {
+   "answer":"",
+   "feedback":[],
+   "answers":[],
    "attemptCount":1,
-   "feedback":[
-      
-   ],
    "showSolution":false,
    "user":{
       "id":"5fd0de0f30795372827b0f2a",
+      "firstName":null,
+      "lastName":null,
       "language":"en"
    },
    "assignment":{
       "id":"6261560949496205f2430680",
       "title":"PG Bag",
-      "files":[
-         
-      ]
+      "files":[]
    },
+   "block":null,
    "question":{
       "id":"626aa854769943907f5506ea",
       "text":"Below you find the External Specification of the ADT _Bag_ in terms of a stub implementation of the class `adt.Bag`. It contains all required public methods together with a specification of the class's and methods's invariants, pre- and post-conditions.\n\nFollowing the Procedural Guidance, your task is to now implement a test class using JUnit 5 (Jupiter) that can be used to check whether an actual implementation of this class satisfies the full specification. This test class should be called `adt.test.BagTest`. Fill your solution into the blow template of this test class.\n\n```java\npackage adt;\n/**\n * This class represents a bag of integers. A bag can contain duplicate elements.\n * The bag is not limited in the number of elements it can hold.\n * The number of elements in the bag is represented by its length. \n * @inv Number of elements >= 0\n */\npublic class Bag {\n\n /**\n * @ensures A new bag is instantiated, with length = 0. \n */\n public Bag() {}\n\n /**\n * @ensures new cardinality = old cardinality + 1\n * @ensures the new length is the old length plus 1\n * @ensures returns true \n */\n\n public boolean add(int elem) {\n\t return false;\n\t}\n\t\n /**\n * @sub Happy-path {\n * @requires length > 0 and the bag contains n elements of elem, with n > 0\n * @ensures new cardinality(elem) = old cardinality(elem) - 1\n * @ensures length is old length minus 1\n * @ensures returns true\n * }\n * @sub Non-happy-path {\n * @requires length = 0 or the bag does not contain element elem\n * @ensures the bag is not changed\n * @ensures length is old length\n * @ensures returns false\n * }\n */\n public boolean remove(int elem) {\n\t return false;\n\t}\n \n /**\n * @ensures returns the number of elements \n */\n public int length() {\n\t return 0;\n\t}\n\n /**\n * @ensures true if they contain the same elements otherwise false \n */\n public boolean equals(Object obj) {\n\t return false;\n\t}\n\n /**\n * @ensures returns the elements in the bag\n */\n public int[] getElems() {\n\t return null;\n\t}\n\n /**\n * @ensures returns the number of elem in the bag\n */\n public int cardinality(int elem) {\n\t return 0;\n\t}\n}\n```",
       "solution":"```java\npackage adt.test;\n\nimport static org.junit.jupiter.api.Assertions.assertEquals;\nimport static org.junit.jupiter.api.Assertions.assertFalse;\nimport static org.junit.jupiter.api.Assertions.assertTrue;\nimport static org.junit.jupiter.api.Assertions.assertArrayEquals;\n\nimport org.junit.jupiter.api.Test;\n\nimport adt.Bag;\n\npublic class BagTest {\n\n\t// Method cardinality is tested indirectly in all test methods.\n\n\t@Test\n\tvoid testCreat() {\n\t\tBag bag = new Bag();\n\t\tassertEquals(0, bag.length(), \"A new bag in instantiated, with length = 0\");\n\t}\n\n\t@Test\n\tvoid testAddToEmptySet() {\n\t\tBag bag = new Bag();\n\t\tboolean res = bag.add(1);\n\t\tassertEquals(1, bag.cardinality(1));\n\t\tassertEquals(1, bag.length(), \"The new length is the old length plus 1\");\n\t\tassertEquals(true, res, \"returns true\");\n\t}\n\n\t@Test\n\tvoid testAddToNonEmptyBag() {\n\t\tBag bag = new Bag();\n\t\tbag.add(1);\n\t\tbag.add(2);\n\n\t\tboolean res = bag.add(3);\n\t\tassertEquals(1, bag.cardinality(3));\n\t\tassertEquals(3, bag.length(), \"The new length is the old length plus 1\");\n\t\tassertEquals(true, res, \"returns true\");\n\n\t\tres = bag.add(3);\n\t\tassertEquals(2, bag.cardinality(3));\n\t\tassertEquals(4, bag.length(), \"The new length is the old length\");\n\t\tassertEquals(true, res, \"returns true\");\n\n\t}\n\n\t@Test\n\tvoid testRemoveHappyPath() {\n\t\tBag bag = new Bag();\n\t\tbag.add(1);\n\t\tbag.add(2);\n\t\tbag.add(3);\n\t\tboolean res = bag.remove(1);\n\t\tassertEquals(0, bag.cardinality(1));\n\t\tassertEquals(2, bag.length(), \"The new length is the old length minus 1\");\n\t\tassertEquals(true, res, \"returns true\");\n\t}\n\n\t@Test\n\tvoid testRemoveNonHappyPath() {\n\t\t// Length = 0\n\t\tBag bag = new Bag();\n\t\tboolean res = bag.remove(1);\n\t\tassertEquals(0, bag.length(), \"The new length is the old (= 0)\");\n\t\tassertEquals(false, res, \"returns false\");\n\t\t// Bag does not contain el\n\t\tbag.add(1);\n\t\tbag.add(2);\n\t\tbag.add(3);\n\t\tres = bag.remove(4);\n\t\tassertEquals(3, bag.length(), \"The new length is the old length (= 3)\");\n\t\tassertEquals(false, res, \"returns false\");\n\t}\n\n\t@Test\n\tvoid testEquals() {\n\t\tBag bag1 = new Bag();\n\t\tBag bag2 = new Bag();\n\t\tbag2.add(1);\n\t\tbag2.add(2);\n\t\tBag bag3 = new Bag();\n\t\tbag3.add(2);\n\t\tbag3.add(1);\n\t\tBag bag4 = new Bag();\n\t\tbag4.add(1);\n\t\tbag4.add(2);\n\t\tbag4.add(3);\n\t\tassertFalse(bag1.equals(bag2), \"The bags are not equal\");\n\t\tassertTrue(bag2.equals(bag3), \"The bags are equal\");\n\t\tassertTrue(bag3.equals(bag2), \"The bags are equal, symmetry\");\n\t\tassertFalse(bag2.equals(bag4), \"The bags are not equal\");\n\t}\n\n\t@Test\n\tvoid testGetElems() {\n\t\tBag bag = new Bag();\n\t\tint[] arr1 = new int[0];\n\t\tassertArrayEquals(arr1, bag.getElems());\n\t\tbag.add(0);\n\t\tbag.add(1);\n\t\tint[] arr2 = new int[2];\n\t\tarr2[0] = 0;\n\t\tarr2[1] = 1;\n\t\tassertArrayEquals(arr2, bag.getElems());\n\t}\n\n\t@Test\n\tvoid testcardinality() {\n\t\tBag bag1 = new Bag();\n\t\tassertFalse(bag1.cardinality(1) > 0, \"An empty bag can't contain an elem\");\n\t\tbag1.add(1);\n\t\tbag1.add(2);\n\t\tassertTrue(bag1.cardinality(1) == 1, \"The bag has one elem 1\");\n\t\tassertTrue(bag1.cardinality(3) == 0, \"The bag has no elem 3\");\n\t}\n\n}\n```",
       "programmingLanguage":"java"
    },
-   "files":[
-      
-   ],
-   "comment":"",
+   "checkerClass":"eu.qped.java.checkers.coverage.CoverageChecker",
+   "settings":null,
    "score":null,
-   "stop":false,
-   "answers":[
-      "package adt.test;\n\nimport static org.junit.jupiter.api.Assertions.assertEquals;\nimport static org.junit.jupiter.api.Assertions.assertFalse;\nimport static org.junit.jupiter.api.Assertions.assertTrue;\nimport static org.junit.jupiter.api.Assertions.assertArrayEquals;\n\nimport org.junit.jupiter.api.Test;\n\nimport adt.Bag;\n\npublic class BagTest {\n \n @Test\n\tvoid testCreat() {\n\t\tBag bag = new Bag();\n\t\tassertEquals(0, bag.length(), \"A new bag in instantiated, with length = 0\");\n\t}\n\n}"
-   ],
-   "answer":"package adt.test;\n\nimport static org.junit.jupiter.api.Assertions.assertEquals;\nimport static org.junit.jupiter.api.Assertions.assertFalse;\nimport static org.junit.jupiter.api.Assertions.assertTrue;\nimport static org.junit.jupiter.api.Assertions.assertArrayEquals;\n\nimport org.junit.jupiter.api.Test;\n\nimport adt.Bag;\n\npublic class BagTest {\n \n @Test\n\tvoid testCreat() {\n\t\tBag bag = new Bag();\n\t\tassertEquals(0, bag.length(), \"A new bag in instantiated, with length = 0\");\n\t}\n\n}",
-   "checkerClass":"eu.qped.java.checkers.mass.Mass",
    "mainSettings":{
       "syntaxLevel":"BEGINNER",
       "preferredLanguage":"en",
       "styleNeeded":true,
       "semanticNeeded":false
    },
-   "testCoverage":{
-      "privateImplementationUrl":"https://hessenbox.uni-marburg.de/dl/fiXKTmYrqJEXBzAs5L1CpX3s/PG-Bag-Private.zip",
-      "massages":[
-         {
-            "class":"adt.Bag",
-            "line":20,
-            "message":"You have not created a new bag needed to test the class Bag."
-         },
-         {
-            "class":"adt.Bag",
-            "line":30,
-            "message":"Add method: You have not tested the add method with an empty bag."
-         },
-         {
-            "class":"adt.Bag",
-            "line":33,
-            "message":"Add method: You have not tested the add method with a non empty bag."
-         },
-         {
-            "class":"adt.Bag",
-            "line":52,
-            "message":"Remove method: You have not tested the requirement `length > 0' and a bag containing elem (happy-path scenario)."
-         },
-         {
-            "class":"adt.Bag",
-            "line":56,
-            "message":"Remove method: You have not tested the requirement `length = 0' of the non-happy-path."
-         },
-         {
-            "class":"adt.Bag",
-            "line":60,
-            "message":"Remove method: You have not tested the requirement `the bag does not contain element elem' of the non-happy path."
-         },
-         {
-            "class":"adt.Bag",
-            "line":78,
-            "message":"Equals method: You have not tested the equals method with an empty bag as this."
-         },
-         {
-            "class":"adt.Bag",
-            "line":82,
-            "message":"Equals method: You have not tested the equals method with an empty bag as parameter."
-         },
-         {
-            "class":"adt.Bag",
-            "line":86,
-            "message":"Equals method: You have not tested the equals method with an non-empty bag as this."
-         },
-         {
-            "class":"adt.Bag",
-            "line":90,
-            "message":"Equals method: You have not tested the equals method with an non-empty bag as parameter."
-         },
-         {
-            "class":"adt.Bag",
-            "line":94,
-            "message":"Equals method: You have not tested the equals method with two bags of equal length."
-         },
-         {
-            "class":"adt.Bag",
-            "line":98,
-            "message":"Equals method: You have not tested the equals method with two bags of unequal length."
-         },
-         {
-            "class":"adt.Bag",
-            "line":130,
-            "message":"Method cardinality: You have not tested with an empty bag."
-         },
-         {
-            "class":"adt.Bag",
-            "line":133,
-            "message":"Method cardinality: You have not tested with non-empty bag and cardinality zero."
-         },
-         {
-            "class":"adt.Bag",
-            "line":137,
-            "message":"Method cardinality: You have not tested with non-empty bag and cardinality > zero."
-         }
-      ]
+   "stop":false,
+   "files":[],
+   "comment":"",
+   "covSetting": {
+      "excludeByTypeSet" : [],
+      "excludeBYNameSet" : [],
+      "format" : "",
+      "feedback" : ["Bag:CUSTOM:19:You have not created a new bag needed to test the class Bag.", "Bag:CUSTOM:29:Add method: You have not tested the add method with an empty bag.", "Bag:CUSTOM:32:Add method: You have not tested the add method with a non empty bag.", "Bag:CUSTOM:51:Remove method: You have not tested the requirement 'length > 0' and a bag containing elem.", "Bag:CUSTOM:55:Remove method: You have not tested the requirement 'length = 0' of the non-happy-path.", "Bag:CUSTOM:59:Remove method: You have not tested the requirement 'the bag does not contain element elem' of the non-happy path.", "Bag:CUSTOM:77:Equals method: You have not tested the equals method with an empty bag as this.", "Bag:CUSTOM:81:Equals method: You have not tested the equals method with an empty bag as parameter.", "Bag:CUSTOM:85:Equals method: You have not tested the equals method with an non-empty bag as this.", "Bag:CUSTOM:89:Equals method: You have not tested the equals method with an non-empty bag as parameter.", "Bag:CUSTOM:93:Equals method: You have not tested the equals method with two bags of equal length.", "Bag:CUSTOM:97:Equals method: You have not tested the equals method with two bags of unequal length.", "Bag:CUSTOM:129:Method cardinality: You have not tested with an empty bag.", "Bag:CUSTOM:132:Method cardinality: You have not tested with non-empty bag and cardinality zero.", "Bag:CUSTOM:136:Method cardinality: You have not tested with non-empty bag and cardinality > zero."]
+   },
+   "file":{
+      "id":"PG-Bag-ANSWER",
+      "label":"answer",
+      "extension":".zip",
+      "path":"",
+      "mimetype":"application/zip",
+      "url":"file:coverage_testclasses/testcoverage-pg/PG-Bag-ANSWER.zip"
+   },
+   "additional":{
+      "id":"PG-Bag-ASSIGNMENT",
+      "label":"hello",
+      "extension":".zip",
+      "path":"",
+      "mimetype":"application/zip",
+      "url":"file:coverage_testclasses/testcoverage-pg/PG-Bag-ASSIGNMENT.zip"
    }
 }

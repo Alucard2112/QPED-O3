@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import eu.qped.framework.qf.QfUser;
 
+import java.nio.file.Path;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -22,7 +23,7 @@ public class DefaultFB {
     private static final String ENGLISH = "en";
     private static final Set<String> SUPPORTED_LANGUAGES = new HashSet<>() {{
         add(ENGLISH);
-        add("ger");
+        add("de");
     }};
 
     /**
@@ -39,7 +40,7 @@ public class DefaultFB {
         }
         ObjectMapper yamlMapper = new ObjectMapper(new YAMLFactory());
         try {
-            return yamlMapper.readValue(ClassLoader.getSystemResource("coverage/language/" + language + ".yaml"), DefaultFB.class);
+            return yamlMapper.readValue(Path.of("src/main/resources/coverage/language/" + language + ".yaml").toFile(), DefaultFB.class);
         } catch (Exception e) {
             return new DefaultFB();
         }

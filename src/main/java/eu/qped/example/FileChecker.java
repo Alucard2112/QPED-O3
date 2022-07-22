@@ -11,6 +11,7 @@ public class FileChecker implements Checker {
 
 	@QfProperty
 	private FileInfo file;
+
 	
 	@Override
 	public void check(QfObject qfObject) throws Exception {

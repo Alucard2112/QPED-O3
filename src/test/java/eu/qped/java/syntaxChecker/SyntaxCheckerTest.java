@@ -45,7 +45,7 @@ public class SyntaxCheckerTest {
 
         String code = "correct code";
 
-        Mockito.when(compiler.compile(code))
+        Mockito.when(compiler.compileFromString(code))
                 .thenReturn(true);
 
         syntaxChecker.setStringAnswer(code);
@@ -63,7 +63,7 @@ public class SyntaxCheckerTest {
         String failCode = "failCode";
         syntaxChecker.setStringAnswer(failCode);
 
-        Mockito.when(compiler.compile(failCode))
+        Mockito.when(compiler.compileFromString(failCode))
                 .thenReturn(false);
 
         Mockito.when(compiler.getCollectedDiagnostics())
@@ -197,9 +197,9 @@ public class SyntaxCheckerTest {
         File class1 = File.createTempFile("Class1", ".java", tempDir.toFile());
         File class2 = File.createTempFile("Class2", ".java", tempDir.toFile());
 
-        compiler.setTargetProjectOrClassPath(tempDir.toUri().getPath());
+//        compiler.setTargetProjectOrClassPath(tempDir.toUri().getPath());
 
-        Mockito.when(compiler.compile(null))
+        Mockito.when(compiler.compileFromProject(tempDir.toUri().getPath()))
                 .thenReturn(true);
 
         Mockito.when(compiler.getTargetProjectOrClassPath())

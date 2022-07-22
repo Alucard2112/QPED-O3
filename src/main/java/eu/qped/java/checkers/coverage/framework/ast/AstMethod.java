@@ -2,12 +2,13 @@ package eu.qped.java.checkers.coverage.framework.ast;
 
 import eu.qped.java.checkers.coverage.enums.StatementType;
 
+import java.util.List;
 import java.util.Objects;
 
 public class AstMethod extends AstResult {
-    private final String content;
+    private final List<String> content;
 
-    public AstMethod(StatementType type, String className, String methodName, int start, int end, String content) {
+    public AstMethod(StatementType type, String className, String methodName, int start, int end, List<String> content) {
         super(type, className, methodName, start, end);
         if (! type.equals(StatementType.METHOD) && ! type.equals(StatementType.CONSTRUCTOR))
             throw new IllegalStateException("ERROR::AstMethod.new() parameter type can only be type method or constructor");
@@ -19,7 +20,7 @@ public class AstMethod extends AstResult {
         return type.equals(StatementType.CONSTRUCTOR);
     }
 
-    public String content() {
+    public List<String> content() {
         return content;
     }
 
